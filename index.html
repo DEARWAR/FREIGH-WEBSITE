@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FreightERP Pro — Hawkeye Freight Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy: #0f1729;
+  --navy-mid: #1e2d45;
+  --blue: #2563eb;
+  --blue-light: #60a5fa;
+  --blue-pale: #eff6ff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --bg: #f8fafc;
+  --white: #ffffff;
+  --green: #059669;
+  --green-pale: #d1fae5;
+  --amber: #d97706;
+  --amber-pale: #fef3c7;
+  --purple: #7c3aed;
+  --purple-pale: #f3e8ff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--white);line-height:1.6;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%}
+.nav-inner{display:flex;align-items:center;height:64px;gap:0}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
+.nav-logo-icon{background:var(--navy);color:#60a5fa;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700}
+.nav-logo-text{font-size:16px;font-weight:700;color:var(--navy)}
+.nav-logo-sub{font-size:11px;color:var(--muted);display:block;line-height:1}
+.nav-links{display:flex;gap:2px;margin-right:24px}
+.nav-links a{text-decoration:none;font-size:13px;font-weight:500;color:var(--muted);padding:6px 14px;border-radius:6px;transition:all .2s}
+.nav-links a:hover{color:var(--text);background:var(--bg)}
+.nav-cta{background:var(--blue);color:white;font-size:13px;font-weight:600;padding:9px 20px;border-radius:8px;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:#1d4ed8}
+
+/* ── HERO ── */
+.hero{padding:80px 5% 70px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1200px;margin:0 auto}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:#eff6ff;color:var(--blue);font-size:12px;font-weight:600;padding:6px 14px;border-radius:20px;margin-bottom:22px;border:1px solid #bfdbfe}
+.hero-eyebrow-dot{width:6px;height:6px;background:var(--blue);border-radius:50%}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;line-height:1.1;color:var(--navy);margin-bottom:20px;letter-spacing:-0.5px}
+.hero h1 span{color:var(--blue)}
+.hero-desc{font-size:17px;color:var(--muted);margin-bottom:32px;line-height:1.7;max-width:480px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--blue);color:white;font-size:14px;font-weight:600;padding:13px 28px;border-radius:9px;text-decoration:none;transition:all .2s;border:none;cursor:pointer}
+.btn-primary:hover{background:#1d4ed8;transform:translateY(-1px)}
+.btn-secondary{background:white;color:var(--navy);font-size:14px;font-weight:600;padding:12px 28px;border-radius:9px;text-decoration:none;border:1.5px solid var(--border);transition:all .2s}
+.btn-secondary:hover{border-color:#94a3b8;background:var(--bg)}
+.hero-trust{display:flex;align-items:center;gap:12px;margin-top:28px}
+.hero-trust-text{font-size:12px;color:var(--muted)}
+.hero-trust-badges{display:flex;gap:8px}
+.trust-badge{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:600;color:var(--muted)}
+
+/* ── DASHBOARD MOCKUP ── */
+.hero-visual{position:relative}
+.mockup-frame{background:var(--white);border-radius:14px;border:1px solid var(--border);box-shadow:0 20px 60px rgba(15,23,41,0.12),0 4px 16px rgba(15,23,41,0.06);overflow:hidden}
+.mockup-nav{background:var(--navy);height:40px;display:flex;align-items:center;padding:0 14px;gap:8px}
+.mockup-dot{width:8px;height:8px;border-radius:50%}
+.mockup-logo{margin-left:8px;color:#60a5fa;font-size:11px;font-weight:700;margin-right:auto}
+.mockup-body{padding:14px}
+.mockup-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.m-card{background:white;border:1px solid var(--border);border-radius:8px;padding:10px;position:relative;overflow:hidden}
+.m-card-bar{position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:2px 0 0 2px}
+.m-card-label{font-size:9px;color:var(--muted);margin-bottom:3px;padding-left:8px}
+.m-card-val{font-size:18px;font-weight:700;padding-left:8px}
+.mockup-table-head{background:#f1f5f9;border-radius:6px 6px 0 0;display:flex;padding:6px 10px;gap:0}
+.m-th{font-size:8px;font-weight:700;color:#475569}
+.mockup-rows{border:1px solid var(--border);border-top:0;border-radius:0 0 6px 6px;overflow:hidden}
+.m-row{display:flex;align-items:center;padding:6px 10px;border-bottom:1px solid #f1f5f9;font-size:9px;color:var(--text)}
+.m-row:last-child{border-bottom:0}
+.m-row:nth-child(even){background:#f8fafc}
+.m-badge{border-radius:4px;padding:2px 7px;font-size:8px;font-weight:700}
+
+/* ── STATS BAR ── */
+.stats-bar{background:var(--navy);padding:32px 5%}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stat-item{text-align:center;padding:0 20px;border-right:1px solid rgba(255,255,255,0.1)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-size:36px;font-weight:800;color:white;line-height:1}
+.stat-num span{color:#60a5fa}
+.stat-label{font-size:13px;color:#94a3b8;margin-top:6px}
+
+/* ── SECTIONS ── */
+.section{padding:80px 5%}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-eyebrow{font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.section-title{font-family:'DM Serif Display',serif;font-size:38px;color:var(--navy);line-height:1.2;margin-bottom:16px}
+.section-desc{font-size:16px;color:var(--muted);max-width:540px;line-height:1.7}
+.section-header{text-align:center;margin-bottom:56px}
+.section-header .section-desc{margin:0 auto}
+
+/* ── FEATURES GRID ── */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feature-card{background:white;border:1px solid var(--border);border-radius:14px;padding:28px;transition:all .25s;position:relative;overflow:hidden}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.feature-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(37,99,235,0.1);border-color:#bfdbfe}
+.feature-card:hover::before{transform:scaleX(1)}
+.feature-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px}
+.feature-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.feature-desc{font-size:14px;color:var(--muted);line-height:1.65}
+
+/* ── MODULES ── */
+.modules-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.module-chip{background:white;border:1px solid var(--border);border-radius:10px;padding:18px 16px;display:flex;align-items:center;gap:12px;transition:all .2s}
+.module-chip:hover{border-color:var(--blue);background:var(--blue-pale)}
+.module-chip-icon{font-size:20px;flex-shrink:0}
+.module-chip-name{font-size:13px;font-weight:600;color:var(--navy)}
+.module-chip-sub{font-size:11px;color:var(--muted)}
+
+/* ── HOW IT WORKS ── */
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.how-grid::before{content:'';position:absolute;top:28px;left:14%;right:14%;height:1px;background:var(--border);z-index:0}
+.how-step{text-align:center;padding:0 16px;position:relative;z-index:1}
+.how-step-num{width:56px;height:56px;border-radius:50%;background:white;border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:18px;font-weight:800;color:var(--blue)}
+.how-step-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.how-step-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ── SCREENSHOT ── */
+.screenshot-section{background:var(--bg);padding:80px 5%}
+.screenshot-tabs{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap;justify-content:center}
+.stab{background:white;border:1px solid var(--border);border-radius:8px;padding:8px 18px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s}
+.stab.active{background:var(--blue);color:white;border-color:var(--blue)}
+.screenshot-frame{background:white;border-radius:16px;border:1px solid var(--border);box-shadow:0 16px 48px rgba(15,23,41,0.1);overflow:hidden;max-width:900px;margin:0 auto}
+.sf-topbar{background:var(--navy);height:44px;display:flex;align-items:center;padding:0 16px;gap:6px}
+.sf-dot{width:10px;height:10px;border-radius:50%}
+.sf-url{flex:1;background:rgba(255,255,255,0.08);border-radius:5px;height:24px;margin:0 16px;display:flex;align-items:center;padding:0 10px}
+.sf-url span{font-size:10px;color:#94a3b8}
+.sf-content{padding:20px}
+
+/* ── PRICING ── */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto}
+.price-card{background:white;border:1px solid var(--border);border-radius:16px;padding:32px;transition:all .25s}
+.price-card.featured{border-color:var(--blue);border-width:2px;position:relative}
+.price-featured-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--blue);color:white;font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;white-space:nowrap}
+.price-tier{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.price-amount{font-size:36px;font-weight:800;color:var(--navy);line-height:1}
+.price-period{font-size:13px;color:var(--muted);margin-left:4px}
+.price-desc{font-size:13px;color:var(--muted);margin:12px 0 24px;line-height:1.6}
+.price-divider{height:1px;background:var(--border);margin-bottom:24px}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.price-features li{font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px}
+.price-features li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.price-features li.dim{color:var(--muted)}
+.price-features li.dim::before{content:'–';color:#cbd5e1}
+.btn-price{width:100%;padding:12px;border-radius:9px;font-size:14px;font-weight:600;text-align:center;cursor:pointer;transition:all .2s;text-decoration:none;display:block}
+.btn-price-outline{border:1.5px solid var(--border);background:white;color:var(--navy)}
+.btn-price-outline:hover{border-color:var(--blue);color:var(--blue)}
+.btn-price-fill{background:var(--blue);color:white;border:none}
+.btn-price-fill:hover{background:#1d4ed8}
+
+/* ── TESTIMONIALS ── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testi-card{background:white;border:1px solid var(--border);border-radius:14px;padding:28px}
+.testi-stars{color:#f59e0b;font-size:14px;margin-bottom:14px;letter-spacing:2px}
+.testi-text{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:20px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:white;flex-shrink:0}
+.testi-name{font-size:13px;font-weight:700;color:var(--navy)}
+.testi-role{font-size:12px;color:var(--muted)}
+
+/* ── CTA ── */
+.cta-section{background:var(--navy);padding:80px 5%;text-align:center}
+.cta-section h2{font-family:'DM Serif Display',serif;font-size:42px;color:white;margin-bottom:16px;line-height:1.2}
+.cta-section h2 span{color:#60a5fa}
+.cta-section p{font-size:17px;color:#94a3b8;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-cta-white{background:white;color:var(--navy);font-size:15px;font-weight:700;padding:14px 32px;border-radius:9px;text-decoration:none;transition:all .2s}
+.btn-cta-white:hover{background:#f1f5f9;transform:translateY(-1px)}
+.btn-cta-outline{border:1.5px solid rgba(255,255,255,0.3);color:white;font-size:15px;font-weight:600;padding:13px 32px;border-radius:9px;text-decoration:none;transition:all .2s}
+.btn-cta-outline:hover{border-color:white;background:rgba(255,255,255,0.08)}
+
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.contact-info h3{font-family:'DM Serif Display',serif;font-size:30px;color:var(--navy);margin-bottom:14px}
+.contact-info p{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:28px}
+.contact-detail{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.contact-icon{width:40px;height:40px;background:var(--blue-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.contact-detail-text{font-size:14px;font-weight:600;color:var(--navy)}
+.contact-detail-sub{font-size:13px;color:var(--muted)}
+.contact-form{background:white;border:1px solid var(--border);border-radius:16px;padding:32px}
+.form-title{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:22px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-group{margin-bottom:0}
+.form-group label{display:block;font-size:12px;font-weight:600;color:var(--navy);margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
+.form-group input,.form-group textarea,.form-group select{width:100%;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:14px;font-family:'Inter',sans-serif;color:var(--text);outline:none;transition:border .2s;background:white}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,0.08)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-submit{width:100%;background:var(--blue);color:white;border:none;border-radius:9px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;margin-top:8px}
+.form-submit:hover{background:#1d4ed8}
+.form-success{display:none;background:var(--green-pale);border:1px solid #6ee7b7;border-radius:8px;padding:14px;text-align:center;color:var(--green);font-size:14px;font-weight:600;margin-top:12px}
+
+/* ── FOOTER ── */
+footer{background:#060d1a;padding:48px 5% 28px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand .logo{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.footer-brand .logo-icon{background:#1e3a5f;color:#60a5fa;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+.footer-brand .logo-text{font-size:15px;font-weight:700;color:white}
+.footer-brand p{font-size:13px;color:#64748b;line-height:1.7;max-width:260px}
+.footer-col h4{font-size:12px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:#64748b;text-decoration:none;margin-bottom:10px;transition:color .2s}
+.footer-col a:hover{color:white}
+.footer-bottom{border-top:1px solid #1e293b;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap}
+.footer-copy{font-size:12px;color:#475569}
+.footer-dev{font-size:12px;color:#475569}
+.footer-dev strong{color:#60a5fa}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:40px}
+  .hero h1{font-size:38px}
+  .hero-visual{order:-1}
+  .features-grid,.modules-grid,.pricing-grid,.testi-grid{grid-template-columns:1fr 1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat-item{border-right:none;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
+}
+@media(max-width:600px){
+  .features-grid,.modules-grid,.pricing-grid,.testi-grid{grid-template-columns:1fr}
+  .hero h1{font-size:30px}
+  .nav-links{display:none}
+  .how-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .6s ease both}
+.fade-up-1{animation-delay:.1s}
+.fade-up-2{animation-delay:.2s}
+.fade-up-3{animation-delay:.3s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">✈</div>
+      <div>
+        <span class="nav-logo-text">FreightERP Pro</span>
+        <span class="nav-logo-sub">Hawkeye Freight Services</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#modules">Modules</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="https://wa.me/919779569260?text=Hi%20Manish,%20I%20want%20to%20book%20a%20demo." target="_blank" class="nav-cta">Book a Demo →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section style="background:white;padding:0 0 0 0">
+  <div class="hero">
+    <div>
+      <div class="hero-eyebrow fade-up">
+        <span class="hero-eyebrow-dot"></span>
+        Trusted by Freight Forwarders across India
+      </div>
+      <h1 class="fade-up fade-up-1">The Complete<br/><span>Freight ERP</span><br/>You Deserve</h1>
+      <p class="hero-desc fade-up fade-up-2">Manage every shipment, document, invoice, and report from one powerful platform. Built specifically for freight forwarding companies in India.</p>
+      <div class="hero-btns fade-up fade-up-3">
+        <a href="https://wa.me/919779569260?text=Hi%20Manish,%20I%20want%20to%20book%20a%20demo." target="_blank" class="btn-primary">Get Free Demo</a>
+        <a href="#features" class="btn-secondary">Explore Features</a>
+      </div>
+      <div class="hero-trust fade-up fade-up-3">
+        <span class="hero-trust-text">Supports:</span>
+        <div class="hero-trust-badges">
+          <span class="trust-badge">FCL</span>
+          <span class="trust-badge">LCL</span>
+          <span class="trust-badge">AIR</span>
+          <span class="trust-badge">LAN Network</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIVE DASHBOARD MOCKUP -->
+    <div class="hero-visual fade-up fade-up-2">
+  <img src="dashboard.png" alt="FreightERP Pro Dashboard" style="width: 100%; height: auto; border-radius: 14px; box-shadow: 0 20px 60px rgba(15,23,41,0.12), 0 4px 16px rgba(15,23,41,0.06); border: 1px solid var(--border); display: block;" />
+</div>
+          <div class="mockup-dot" style="background:#ef4444"></div>
+          <div class="mockup-dot" style="background:#f59e0b"></div>
+          <div class="mockup-dot" style="background:#10b981"></div>
+          <span class="mockup-logo">✈ FreightERP Pro</span>
+          <span style="font-size:9px;color:#475569">Admin ▾</span>
+        </div>
+        <div class="mockup-body">
+          <div style="font-size:11px;font-weight:700;color:#0f172a;margin-bottom:10px">Dashboard Overview</div>
+          <div class="mockup-cards">
+            <div class="m-card">
+              <div class="m-card-bar" style="background:#d97706"></div>
+              <div class="m-card-label">Pending</div>
+              <div class="m-card-val" style="color:#d97706">119</div>
+            </div>
+            <div class="m-card">
+              <div class="m-card-bar" style="background:#1d4ed8"></div>
+              <div class="m-card-label">Ongoing</div>
+              <div class="m-card-val" style="color:#1d4ed8">120</div>
+            </div>
+            <div class="m-card">
+              <div class="m-card-bar" style="background:#059669"></div>
+              <div class="m-card-label">Cleared</div>
+              <div class="m-card-val" style="color:#059669">1</div>
+            </div>
+            <div class="m-card">
+              <div class="m-card-bar" style="background:#7c3aed"></div>
+              <div class="m-card-label">Revenue</div>
+              <div class="m-card-val" style="color:#7c3aed;font-size:11px">₹15,105</div>
+            </div>
+          </div>
+          <div class="mockup-table-head">
+            <div class="m-th" style="width:80px">Job No.</div>
+            <div class="m-th" style="width:90px">Consignee</div>
+            <div class="m-th" style="flex:1">Container</div>
+            <div class="m-th" style="width:50px">Status</div>
+          </div>
+          <div class="mockup-rows">
+            <div class="m-row">
+              <div style="width:80px;font-weight:600;color:#1d4ed8">MK/055</div>
+              <div style="width:90px">Radhika Steel</div>
+              <div style="flex:1">MSKU123456</div>
+              <div style="width:50px"><span class="m-badge" style="background:#dbeafe;color:#1d4ed8">Open</span></div>
+            </div>
+            <div class="m-row">
+              <div style="width:80px;font-weight:600;color:#1d4ed8">MK/058</div>
+              <div style="width:90px">Vardhman</div>
+              <div style="flex:1">MSKU4278 (+)</div>
+              <div style="width:50px"><span class="m-badge" style="background:#d1fae5;color:#059669">Done</span></div>
+            </div>
+            <div class="m-row">
+              <div style="width:80px;font-weight:600;color:#1d4ed8">MK/053</div>
+              <div style="width:90px">Rudra Alloys</div>
+              <div style="flex:1">MSKU782323</div>
+              <div style="width:50px"><span class="m-badge" style="background:#dbeafe;color:#1d4ed8">Open</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">500<span>+</span></div>
+      <div class="stat-label">Jobs Processed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">12<span>+</span></div>
+      <div class="stat-label">Modules Included</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100<span>%</span></div>
+      <div class="stat-label">Made in India</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">24<span>/7</span></div>
+      <div class="stat-label">LAN Network Ready</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section" id="features" style="background:var(--bg)">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Core Features</div>
+      <h2 class="section-title">Everything your freight<br/>team needs in one place</h2>
+      <p class="section-desc">From job creation to final invoice — FreightERP handles the entire shipment lifecycle without missing a step.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#eff6ff">📋</div>
+        <div class="feature-title">Complete Job Management</div>
+        <div class="feature-desc">Create, track, and close FCL, LCL, and AIR shipment jobs. Manage BL details, HBL/MBL numbers, consignee info, and container details — all in one screen.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#d1fae5">💰</div>
+        <div class="feature-title">Smart Cost & Invoicing</div>
+        <div class="feature-desc">Automatically calculate receivables, payables, and net profit per job. Generate professional invoices and credit notes with multi-currency support.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fef3c7">📦</div>
+        <div class="feature-title">Pre-Shipment Tracking</div>
+        <div class="feature-desc">Track pre-shipment jobs with ETA alerts. Get automatic 8-day advance notifications when shipments are due to arrive — never miss a critical deadline.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#f3e8ff">📊</div>
+        <div class="feature-title">Global Reports & Analytics</div>
+        <div class="feature-desc">Generate job-wise profit reports, container status summaries, and revenue dashboards. Filter by date range and export to your team instantly.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#ffe4e6">🌐</div>
+        <div class="feature-title">LAN Multi-PC Network</div>
+        <div class="feature-desc">Connect multiple computers on your office network to a single shared database. All team members work on the same live data — no sync required.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#ecfdf5">🔐</div>
+        <div class="feature-title">Role-Based Access Control</div>
+        <div class="feature-desc">Admin and staff roles with separate permissions. Sensitive data like revenue and accounting is visible only to admins, keeping operations secure.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="section" id="modules" style="background:white">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">All Modules</div>
+      <h2 class="section-title">12 powerful modules,<br/>one unified platform</h2>
+      <p class="section-desc">Each module connects automatically — data entered in one tab flows through to invoicing, receipts, and reports without re-entry.</p>
+    </div>
+    <div class="modules-grid">
+      <div class="module-chip">
+        <span class="module-chip-icon">📄</span>
+        <div>
+          <div class="module-chip-name">BL Details</div>
+          <div class="module-chip-sub">House & Master BL</div>
+        </div>
+      </div>
+      <div class="module-chip">
+        <span class="module-chip-icon">🚢</span>
+        <div>
+          <div class="module-chip-name">Arrival Notice</div>
+          <div class="module-chip-sub">Vessel & ETA tracking</div>
+        </div>
+      </div>
+      <div class="module-chip">
+        <span class="module-chip-icon">🗂️</span>
+        <div>
+          <div class="module-chip-name">Delivery Order</div>
+          <div class="module-chip-sub">DO generation</div>
+        </div>
+      </div>
+      <div class="module-chip">
+        <span class="module-chip-icon">🚛</span>
+        <div>
+          <div class="module-chip-name">Transport</div>
+          <div class="module-chip-sub">Delivery coordination</div>
+        </div>
+      </div>
+      <div class="module-chip">
+        <span class="module-chip-icon">✅</span>
+        <div>
+          <div class="module-chip-name">Clearance</div>
+          <div class="module-chip-sub">Customs & duty</div>
+        </div>
+      </div>
+      <div class="module-chip">
+        <span class="module-chip-icon">🧾</span>
+        <div>
+          <div class="module-chip-name">Invoice</div>
+          <div class="module-chip-sub">Auto invoice generation</div>
+        </div>
+      </div>
+      <div class="module-chip">
+        <span class="module-chip-icon">📝</span>
+        <div>
+          <div class="module-chip-name">Credit Note</div>
+          <div class="module-chip-sub">Adjustments & rebates</div>
+        </div>
+      </div>
+      <div class="module-chip">
+        <span class="module-chip-icon">💳</span>
+        <div>
+          <div class="module-chip-name">Receipt</div>
+          <div class="module-chip-sub">Payment tracking</div>
+        </div>
+      </div>
+      <div class="module-chip">
+        <span class="module-chip-icon">💹</span>
+        <div>
+          <div class="module-chip-name">Cost Sheet</div>
+          <div class="module-chip-sub">Profit per job</div>
+        </div>
+      </div>
+      <div class="module-chip">
+        <span class="module-chip-icon">📑</span>
+        <div>
+          <div class="module-chip-name">Quotations</div>
+          <div class="module-chip-sub">Rate & quote builder</div>
+        </div>
+      </div>
+      <div class="module-chip">
+        <span class="module-chip-icon">💼</span>
+        <div>
+          <div class="module-chip-name">Accounting</div>
+          <div class="module-chip-sub">Revenue & expenses</div>
+        </div>
+      </div>
+      <div class="module-chip">
+        <span class="module-chip-icon">⚙️</span>
+        <div>
+          <div class="module-chip-name">Settings</div>
+          <div class="module-chip-sub">Users & backup</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" style="background:var(--bg)">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-title">Up and running in minutes</h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-step-num">1</div>
+        <div class="how-step-title">Install Software</div>
+        <div class="how-step-desc">Download & install on Windows PC. No internet required. Works fully offline.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">2</div>
+        <div class="how-step-title">Create Users</div>
+        <div class="how-step-desc">Set up Admin and Staff accounts with role-based permissions in Settings.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">3</div>
+        <div class="how-step-title">Start Adding Jobs</div>
+        <div class="how-step-desc">Create your first shipment job — BL, arrival, costing fills automatically.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">4</div>
+        <div class="how-step-title">Generate Reports</div>
+        <div class="how-step-desc">View profit per job, total revenue, and pending shipments from the dashboard.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing" style="background:white">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Pricing</div>
+      <h2 class="section-title">Simple, honest pricing</h2>
+      <p class="section-desc">One-time license fee — no monthly subscriptions, no hidden charges. Own it forever.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tier">Starter</div>
+        <div><span class="price-amount">₹15,000</span><span class="price-period">one-time</span></div>
+        <div class="price-desc">Perfect for small freight forwarders just getting started.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Single PC installation</li>
+          <li>All 12 core modules</li>
+          <li>FCL + LCL + AIR support</li>
+          <li>Invoice & cost sheet</li>
+          <li class="dim">LAN multi-PC network</li>
+          <li class="dim">Priority support</li>
+        </ul>
+        <a href="https://wa.me/919779569260?text=Hi%20Manish,%20I%20want%20to%20buy%20the%20Starter%20Plan%20for%20FreightERP." target="_blank" class="btn-price btn-price-outline">Get Started</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-featured-badge">⭐ Most Popular</div>
+        <div class="price-tier">Professional</div>
+        <div><span class="price-amount">₹25,000</span><span class="price-period">one-time</span></div>
+        <div class="price-desc">For growing teams that need LAN networking and advanced reports.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Up to 3 PC LAN network</li>
+          <li>All 12 core modules</li>
+          <li>FCL + LCL + AIR support</li>
+          <li>Invoice & cost sheet</li>
+          <li>LAN multi-PC network</li>
+          <li>6 months free support</li>
+        </ul>
+        <a href="https://wa.me/919779569260?text=Hi%20Manish,%20I%20want%20to%20buy%20the%20Professional%20Plan%20for%20FreightERP." target="_blank" class="btn-price btn-price-fill">Get Started</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Enterprise</div>
+        <div><span class="price-amount">Custom</span></div>
+        <div class="price-desc">For large operations requiring custom features and unlimited users.</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Unlimited PC network</li>
+          <li>All 12 core modules</li>
+          <li>Custom module development</li>
+          <li>Invoice & cost sheet</li>
+          <li>LAN multi-PC network</li>
+          <li>1 year priority support</li>
+        </ul>
+        <a href="https://wa.me/919779569260?text=Hi%20Manish,%20I%20need%20custom%20details%20for%20the%20Enterprise%20Plan." target="_blank" class="btn-price btn-price-outline">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials" style="background:var(--bg)">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-eyebrow">Client Reviews</div>
+      <h2 class="section-title">What our clients say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"FreightERP completely changed how we manage our jobs. Invoice generation that used to take an hour now takes 2 minutes. Highly recommended for any freight company."</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#1d4ed8">RK</div>
+          <div>
+            <div class="testi-name">Rajesh Kumar</div>
+            <div class="testi-role">Director, Radhika Steel Industries</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"The LAN networking feature is a game changer. Our entire team of 5 works on the same database simultaneously. The dashboard gives me a real-time view every morning."</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#059669">VM</div>
+          <div>
+            <div class="testi-name">Vijay Mehta</div>
+            <div class="testi-role">Operations Head, Vardhman Logistics</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-text">"Pre-shipment alerts saved us from missing two critical deadlines last quarter. The profit tracking per job helped us identify which customers are most profitable."</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#7c3aed">SP</div>
+          <div>
+            <div class="testi-name">Suresh Patel</div>
+            <div class="testi-role">CEO, Rudra Alloys Pvt. Ltd.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-section">
+  <h2>Ready to simplify your<br/><span>freight operations?</span></h2>
+  <p>Book a free demo and see FreightERP Pro in action with your own data and workflow.</p>
+  <div class="cta-btns">
+    <a href="#contact" class="btn-cta-white">Book Free Demo</a>
+    <a href="#pricing" class="btn-cta-outline">View Pricing</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="section" id="contact" style="background:white">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-eyebrow">Get in Touch</div>
+        <h3>Book a free demo or<br/>ask us anything</h3>
+        <p>Our team will walk you through the software live, answer all your questions, and set up a trial for your company.</p>
+        <div class="contact-detail">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-detail-text">Call or WhatsApp</div>
+            <div class="contact-detail-sub">+91 97795 69260</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">📧</div>
+          <div>
+            <div class="contact-detail-text">Email Us</div>
+            <div class="contact-detail-sub">royr13920@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-detail-text">Office</div>
+            <div class="contact-detail-sub">Ludhiana, punjab</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">🛠️</div>
+          <div>
+            <div class="contact-detail-text">Software Engineered by</div>
+            <div class="contact-detail-sub" style="font-weight:700;color:var(--blue)">MANISH DEARWAR</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-title">Request a Free Demo</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Rajesh Kumar" id="f-name"/>
+          </div>
+          <div class="form-group">
+            <label>Company</label>
+            <input type="text" placeholder="Freight Co. Pvt. Ltd." id="f-company"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone / WhatsApp</label>
+            <input type="text" placeholder="+91 98765 43210" id="f-phone"/>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="you@company.com" id="f-email"/>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:14px">
+          <label>Shipment Type You Handle</label>
+          <select id="f-type">
+            <option value="">Select type...</option>
+            <option>FCL (Full Container Load)</option>
+            <option>LCL (Less Container Load)</option>
+            <option>AIR Freight</option>
+            <option>All Types</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label>Message (Optional)</label>
+          <textarea placeholder="Tell us about your requirements, team size, or any questions..." id="f-msg"></textarea>
+        </div>
+        <button type="button" class="form-submit" onclick="submitForm()">Send Demo Request →</button>
+        <div class="form-success" id="form-success">✅ Request received! We'll contact you within 24 hours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">✈</div>
+          <div class="logo-text">FreightERP Pro</div>
+        </div>
+        <p>A complete ERP solution built exclusively for freight forwarding companies. Manage jobs, invoices, and revenue from one powerful platform.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#modules">Modules</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Demo</a>
+      </div>
+      <div class="footer-col">
+        <h4>Modules</h4>
+        <a href="#">BL & Arrival</a>
+        <a href="#">Invoicing</a>
+        <a href="#">Cost Sheet</a>
+        <a href="#">Reports</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#contact">Contact Us</a>
+        <a href="#contact">WhatsApp</a>
+        <a href="#contact">Book Demo</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Hawkeye Freight Services ERP Pro. All rights reserved.</div>
+      <div class="footer-dev">Engineered & Developed by <strong>MANISH DEARWAR</strong></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function submitForm(){
+  const name=document.getElementById('f-name').value.trim();
+  const company=document.getElementById('f-company').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const type=document.getElementById('f-type').value;
+  const msg=document.getElementById('f-msg').value.trim();
+
+  if(!name||!phone){
+    alert('Please enter your name and phone number.');
+    return;
+  }
+
+  // Button ko loading mode mein dikhana
+  const btn = document.querySelector('.form-submit');
+  btn.disabled = true;
+  btn.textContent = 'Submitting... Please wait';
+
+  // YAHAN APNA GOOGLE SCRIPT URL DALEIN (Inverted commas ke andar hi rakhna)
+  const googleScriptUrl = "https://script.google.com/macros/s/AKfycbyEf2-9trB0pzidOC34uHXEMS4emXnEHit4PZdIbYHr9_ynOGhqtukc8QGu8ZulIpIc/exec";
+
+  // Data pack karna
+  const formData = new FormData();
+  formData.append("Name", name);
+  formData.append("Company", company);
+  formData.append("Phone", phone);
+  formData.append("Email", email);
+  formData.append("Shipment_Type", type);
+  formData.append("Message", msg);
+
+  // Background mein chupchaap data Google par bhejna (PC ki security bypass karke)
+  fetch(googleScriptUrl, {
+    method: "POST",
+    mode: "no-cors", // YEH LINE ADD KI HAI - Iske bina PC se data nahi jata
+    body: formData
+  })
+  .then(() => {
+    // Form bharne ke baad user ko success dikhana
+    document.getElementById('form-success').style.display='block';
+    btn.textContent = 'Request Sent Successfully ✓';
+    btn.style.background = '#059669';
+  })
+  .catch(error => {
+    alert("Something went wrong. Please check your internet connection.");
+    btn.disabled = false;
+    btn.textContent = 'Send Demo Request →';
+  });
+}
